@@ -1,6 +1,7 @@
 from fpdf import FPDF
 import json
 
+
 def get_order():
     return """{
     "uuid": "0bada7889b4ec72b57c0436cef6fba1296520c6fe756595091d50e5b9eed7d6c",
@@ -184,43 +185,53 @@ def get_order():
     }
 }"""
 
+
 def create_pdf_fpdf(order):
-    pdf = FPDF('P','mm','Letter')
+    pdf = FPDF('P', 'mm', 'Letter')
 
     pdf.add_page()
 
     pdf.set_font('helvetica', '', 16)
 
     # pdf.set_fill_color(200,100,58)
-    
-    pdf.cell(100,10, 'company_name : '+order["company_name"], 1, 1, 'L', fill=False)
-    pdf.cell(100,10, 'internal_reference : '+order["internal_reference"], 1, 1, 'L', fill=False)
-    pdf.cell(100,10, 'customer_reference : '+order["customer_reference"], 1, 1, 'L', fill=False)
-    pdf.cell(100,10, 'wished_delivery_date : '+order["wished_delivery_date"], 1, 1, 'L', fill=False)
-    pdf.cell(100,10, 'commentary : '+order["commentary"], 1, 1, 'L', fill=False)
-    pdf.cell(100,10, 'default_margin : '+str(order["default_margin"]), 1, 1, 'L', fill=False)
-    pdf.cell(100,10, 'additional_margin : '+str(order["additional_margin"]), 1, 1, 'L', fill=False)
-    
-    pdf.cell(100,10, '', 1, 1, 'L', fill=False)
-    
-    
-    pdf.cell(100,10, 'Offer_lines : ', 1, 1, 'L', fill=False)
-    
-    pdf.cell(100,10, '', 1, 1, 'L', fill=False)
-    
-    pdf.cell(100,10, 'totals : ', 1, 1, 'L', fill=False)
-    pdf.cell(100,10, 'quantity : '+str(order["totals"]["quantity"]), 1, 1, 'L', fill=False)
-    pdf.cell(100,10, 'surface : '+str(order["totals"]["surface"]), 1, 1, 'L', fill=False)
-    pdf.cell(100,10, 'amout_energetic_surcharge : '+str(order["totals"]["amout_energetic_surcharge"]), 1, 1, 'L', fill=False)
-    pdf.cell(100,10, 'amount_excluding_vat : '+str(order["totals"]["amount_excluding_vat"]), 1, 1, 'L', fill=False)
-    pdf.cell(100,10, 'amount_vat : '+str(order["totals"]["amount_vat"]), 1, 1, 'L', fill=False)
-    pdf.cell(100,10, 'amount_including_vat : '+str(order["totals"]["amount_including_vat"]), 1, 1, 'L', fill=False)
-    
+
+    pdf.cell(100, 10, 'company_name : ' +
+             order["company_name"], 1, 1, 'L', fill=False)
+    pdf.cell(100, 10, 'internal_reference : ' +
+             order["internal_reference"], 1, 1, 'L', fill=False)
+    pdf.cell(100, 10, 'customer_reference : ' +
+             order["customer_reference"], 1, 1, 'L', fill=False)
+    pdf.cell(100, 10, 'wished_delivery_date : ' +
+             order["wished_delivery_date"], 1, 1, 'L', fill=False)
+    pdf.cell(100, 10, 'commentary : ' +
+             order["commentary"], 1, 1, 'L', fill=False)
+    pdf.cell(100, 10, 'default_margin : ' +
+             str(order["default_margin"]), 1, 1, 'L', fill=False)
+    pdf.cell(100, 10, 'additional_margin : ' +
+             str(order["additional_margin"]), 1, 1, 'L', fill=False)
+
+    pdf.cell(100, 10, '', 1, 1, 'L', fill=False)
+
+    pdf.cell(100, 10, 'Offer_lines : ', 1, 1, 'L', fill=False)
+
+    pdf.cell(100, 10, '', 1, 1, 'L', fill=False)
+
+    pdf.cell(100, 10, 'totals : ', 1, 1, 'L', fill=False)
+    pdf.cell(100, 10, 'quantity : ' +
+             str(order["totals"]["quantity"]), 1, 1, 'L', fill=False)
+    pdf.cell(100, 10, 'surface : ' +
+             str(order["totals"]["surface"]), 1, 1, 'L', fill=False)
+    pdf.cell(100, 10, 'amout_energetic_surcharge : ' +
+             str(order["totals"]["amout_energetic_surcharge"]), 1, 1, 'L', fill=False)
+    pdf.cell(100, 10, 'amount_excluding_vat : ' +
+             str(order["totals"]["amount_excluding_vat"]), 1, 1, 'L', fill=False)
+    pdf.cell(100, 10, 'amount_vat : ' +
+             str(order["totals"]["amount_vat"]), 1, 1, 'L', fill=False)
+    pdf.cell(100, 10, 'amount_including_vat : ' +
+             str(order["totals"]["amount_including_vat"]), 1, 1, 'L', fill=False)
+
     # with pdf.table() as table:
     #     row = table.row
     #     row.cell("Hello")
-    
-    pdf.output('pdf_1.pdf')
 
-order = json.loads(get_order())
-create_pdf_fpdf(order)
+    pdf.output('pdf_1.pdf')
